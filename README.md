@@ -15,92 +15,60 @@ Some new features in Java 18 you will have to play with :
 
 (All showed examples are mostly from OpenJDK website)
 
-## Improved switch
-It's now stable and fully usable in your programs :)
+## Pattern matching for switch (second preview)
+Reference : [JEP 420](https://openjdk.java.net/jeps/420)
 
-Example:
-```java
-//Before
-switch (day) {
-    case MONDAY:
-    case FRIDAY:
-    case SUNDAY:
-        System.out.println(6);
-        break;
-    case TUESDAY:
-        System.out.println(7);
-        break;
-    case THURSDAY:
-    case SATURDAY:
-        System.out.println(8);
-        break;
-    case WEDNESDAY:
-        System.out.println(9);
-        break;
-}
+It's not yet stable but it has been improved since Java 17.
 
-// From Java 14
-switch (day) {
-    case MONDAY, FRIDAY, SUNDAY -> System.out.println(6);
-    case TUESDAY                -> System.out.println(7);
-    case THURSDAY, SATURDAY     -> System.out.println(8);
-    case WEDNESDAY              -> System.out.println(9);
-}
+## Simple web server
+Reference : [JEP 408](https://openjdk.java.net/jeps/408)
 
-// Other case with variable assignment
-// Before
-int numLetters;
-switch (day) {
-    case MONDAY:
-    case FRIDAY:
-    case SUNDAY:
-        numLetters = 6;
-        break;
-    case TUESDAY:
-        numLetters = 7;
-        break;
-    case THURSDAY:
-    case SATURDAY:
-        numLetters = 8;
-        break;
-    case WEDNESDAY:
-        numLetters = 9;
-        break;
-    default:
-        throw new IllegalStateException("Wat: " + day);
-}
+As many other languages, Java has now its own web server for simple purposes.
 
-// From Java 14
-int numLetters = switch (day) {
-    case MONDAY, FRIDAY, SUNDAY -> 6;
-    case TUESDAY                -> 7;
-    case THURSDAY, SATURDAY     -> 8;
-    case WEDNESDAY              -> 9;
-};
-
-// And if you have a block of code
-int j = switch (day) {
-    case MONDAY  -> 0;
-    case TUESDAY -> 1;
-    default      -> {
-        int k = day.toString().length();
-        int result = f(k);
-        yield result;
-    }
-};
-
-// And also with the new yield reserved word if you don't want to use the ->
-int result = switch (s) {
-    case "Foo": 
-        yield 1;
-    case "Bar":
-        yield 2;
-    default:
-        System.out.println("Neither Foo nor Bar, hmmm...");
-        yield 0;
-};
+It even has its own binary for an easier use :
+```shell
+$ ./jwebserver 
+Binding to loopback by default. For all interfaces use "-b 0.0.0.0" or "-b ::".
+Serving /current/directory and subdirectories on 127.0.0.1 port 8000
+URL http://127.0.0.1:8000/
 ```
 
-As you understand, you will have to enable preview features in your IDE and the POM file to play with all the visible new things brought by Java 18.
+You can also precise the port to bind :
+```shell
+$ ./jwebserver -p 8888
+Binding to loopback by default. For all interfaces use "-b 0.0.0.0" or "-b ::".
+Serving /current/directory and subdirectories on 127.0.0.1 port 8888
+URL http://127.0.0.1:8888/
+```
+
+It's also possible to give the binding address to avoid only listening on local host. It supports both IPv4 and IPv6 :
+```shell
+$ jwebserver -b 0.0.0.0
+Serving /current/directory and subdirectories on 0.0.0.0 (all interfaces) port 8000
+URL: http://123.456.7.891:8000/
+```
+
+You can also precise the folder you want to share with the _-d_ option.
+
+All the options are displayed in the help section :
+```shell
+$ ./jwebserver -h
+Usage: jwebserver [-b bind address] [-p port] [-d directory]
+[-o none|info|verbose] [-h to show options]
+[-version to show version information]
+Options:
+-b, --bind-address    - Address to bind to. Default: 127.0.0.1 (loopback).
+For all interfaces use "-b 0.0.0.0" or "-b ::".
+-d, --directory       - Directory to serve. Default: current directory.
+-o, --output          - Output format. none|info|verbose. Default: info.
+-p, --port            - Port to listen on. Default: 8000.
+-h, -?, --help        - Prints this help message and exits.
+-version, --version   - Prints version information and exits.
+To stop the server, press Ctrl + C.
+```
+
+There is also an API to control this simple web server. Have a look into the documentation or by looking at the SimpleWebServerTest class.
+
+As you understand, you will have to enable preview features in your IDE and the POM file to play with all the new things brought by Java 18.
 
 Enjoy !
