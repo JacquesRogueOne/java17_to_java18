@@ -1,15 +1,15 @@
 # From Java 17 to Java 18
 This kata will help you to discover and experiment new features appeared in Java 18.
 
-In this pandemic times, the subject is about hospital.
-
 You will have to follow the FIXME present into the code which show you where you can use Java 18 new features.
 
+All the new features and other things related to Java 18 can be found [here](https://jdk.java.net/18/)
+
 ## What do I need for this kata ?
-* Git to checkout this code
+* Git to check out this code
 * Maven for dependencies
-* Java 18 of course (look here for new release [OpenJDK](https://adoptopenjdk.net/))
-* An up to date IDE for easier life (the 2022 EAP release of [IntelliJ](https://www.jetbrains.com/idea/nextversion) works perfectly for example)
+* Java 18 of course (look here for new release [OpenJDK](https://jdk.java.net/18/))
+* An up-to-date IDE for easier life (the 2022 EAP release of [IntelliJ](https://www.jetbrains.com/idea/nextversion) works perfectly for example)
 
 Some new features in Java 18 you will have to play with :
 
@@ -68,6 +68,17 @@ To stop the server, press Ctrl + C.
 ```
 
 There is also an API to control this simple web server. Have a look into the documentation or by looking at the SimpleWebServerTest class.
+
+## Deprecate Finalization for Removal
+Reference : [JEP 421](https://openjdk.java.net/jeps/421)
+
+The _finally_ block was not a so great idea and is now deprecated with Java 18.
+
+It's proposed to use instead :
+* The try-with-resources from Java 7
+* The [cleaners](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ref/Cleaner.html) introduced with Java 9
+
+
 
 As you understand, you will have to enable preview features in your IDE and the POM file to play with all the new things brought by Java 18.
 
