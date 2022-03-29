@@ -78,8 +78,19 @@ It's proposed to use instead :
 * The try-with-resources from Java 7
 * The [cleaners](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/ref/Cleaner.html) introduced with Java 9
 
+## Vector API (Third Incubator)
+Reference : [JEP 417](https://openjdk.java.net/jeps/417)
+
+On modern processor, you have vector instructions which can really accelerate some scalar calculations.
+
+You can find an example in this code base which is directly issued from the official documentation.
+
+You will have to play with the Java modules to play with and test this future feature.
+
+Under GNU/Linux systems, you can determine if your CPU supports AVX instructions by typing _lscpu_ command.
 
 
+## Last words
 As you understand, you will have to enable preview features in your IDE and the POM file to play with all the new things brought by Java 18.
 
 Enjoy !
