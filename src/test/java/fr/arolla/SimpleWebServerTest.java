@@ -2,8 +2,9 @@ package fr.arolla;
 
 import com.sun.net.httpserver.SimpleFileServer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -16,9 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class SimpleWebServerTest {
 
-    // Will only work with Java 18
+    // Will only work with Java 18 and not with Windows because of a path problem
     @Test
-    void should_start_web_server() throws IOException, InterruptedException {
+    @DisabledOnOs(OS.WINDOWS)
+    void should_start_web_server_and_get_text_file() throws Exception {
         var classLoader = SimpleWebServerTest.class.getClassLoader();
         var resourceFolder = classLoader
                 .getResource(".")
