@@ -13,8 +13,6 @@ All the new features and other things related to Java 18 can be found [here](htt
 
 Some new features in Java 18 you will have to play with :
 
-(All showed examples are mostly from OpenJDK website)
-
 ## Pattern matching for switch (second preview)
 Reference : [JEP 420](https://openjdk.java.net/jeps/420)
 
