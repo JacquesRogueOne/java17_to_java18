@@ -6,29 +6,14 @@ import fr.arolla.responses.Response;
 import fr.arolla.responses.ServerError;
 
 public class ResponseManager {
-    // FIXME It must be possible to use an exhaustive switch here
     public static String evaluate(Response response) {
 
-        if (response instanceof CorrectResponse) {
-            return "OK";
-        }
-
-        if (response instanceof FunctionalError) {
-            var responseCode = ((FunctionalError) response).responseCode();
-            if (responseCode == 401) {
-                return "Unauthorized";
-            }
-            if (responseCode == 404) {
-                return "Not found";
-            }
-
-            return "Functional error";
-        }
-
-        if (response instanceof ServerError) {
-            return "Internal error";
-        }
-
-        return "Unknown error";
+        return switch (response) {
+            case CorrectResponse correctResponse -> "OK";
+            case FunctionalError fe && fe.responseCode() == 401 -> "Unauthorized";
+            case FunctionalError fe && fe.responseCode() == 404 -> "Not found";
+            case FunctionalError functionalError -> "Functional error";
+            case ServerError serverError -> "Internal error";
+        };
     }
 }
