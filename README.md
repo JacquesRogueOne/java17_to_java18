@@ -5,6 +5,8 @@ You will have to follow the FIXME present into the code which show you where you
 
 All the new features and other things related to Java 18 can be found [here](https://jdk.java.net/18/)
 
+You are on the _correction_ branch which proposes solutions by using features of Java 18.
+
 ## What do I need for this kata ?
 * Git to check out this code
 * Maven for dependencies
