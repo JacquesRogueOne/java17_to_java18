@@ -21,7 +21,6 @@ public class SimpleWebServerTest {
 
     // Will only work with Java 18 and not with Windows because of a path problem
     // FIXME Re-enable this test with Java 18
-    @Disabled
     @Test
     @DisabledOnOs(OS.WINDOWS)
     void should_start_web_server() throws IOException, InterruptedException {

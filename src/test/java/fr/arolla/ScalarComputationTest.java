@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ScalarComputationTest {
 
+
     @Test
     void should_compute_scalar() {
         float[] a = {1.0f, 2.0f};
