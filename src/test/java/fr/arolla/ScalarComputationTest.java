@@ -19,4 +19,18 @@ public class ScalarComputationTest {
         assertThat(c[0]).isEqualTo(-5.0f);
         assertThat(c[1]).isEqualTo(-13.0f);
     }
+
+    @Test
+    void should_compute_scalar_with_vector() {
+        float[] a = {1.0f, 2.0f};
+        float[] b = {2.0f, 3.0f};
+        float[] c = new float[2];
+        var scalarComputation = new ScalarComputation();
+
+        scalarComputation.vectorComputation(a, b, c);
+
+        assertThat(c).isNotEmpty();
+        assertThat(c[0]).isEqualTo(-5.0f);
+        assertThat(c[1]).isEqualTo(-13.0f);
+    }
 }
